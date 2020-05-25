@@ -22,4 +22,18 @@ public class FilmeService {
 		FilmeDAO dao = new FilmeDAO();
 		return dao.listarFilme();
 	}
+	public void excluirFilme(int id) throws IOException {
+		FilmeDAO dao = new FilmeDAO();
+		dao.excluirFilme(id);
+	}
+	public void excluirVariosFilmes(ArrayList<Integer> lista) throws IOException{
+		FilmeDAO fdao = new FilmeDAO();
+		for(int id:lista) {
+			fdao.excluirFilme(id);
+		}
+	}
+	public void alterarFilme(Filme filme) throws IOException{
+		FilmeDAO dao = new FilmeDAO();
+		dao.alterarFilme(filme);
+	}
 }

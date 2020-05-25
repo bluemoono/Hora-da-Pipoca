@@ -115,4 +115,36 @@ public class FilmeDAO {
 			}
 		return lista;
 	}
+	public void excluirFilme(int id) throws IOException{
+		String sql = "DELETE FROM filme WHERE id=?";
+		
+		try(Connection conn = ConnectionFactory.getConnection();
+				PreparedStatement pst = conn.prepareStatement(sql);){
+			pst.setInt(1, id);
+			pst.execute();
+		}catch(SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+	}
+	public void alterarFilme(Filme filme) throws IOException{
+		String sql = "UPDATE INTO Filme SET titulo=?, descricao=?, diretor=?, posterpath=?, "
+				+ "popularidade=?, data_lancamento=?, id_genero=?, WHERE id=?";
+
+		try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement pst = conn.prepareStatement(sql);) {
+
+			pst.setString(1, filme.getTitulo());
+			pst.setString(2, filme.getDescricao());
+			pst.setString(3, filme.getDiretor());
+			pst.setString(4, filme.getPosterPath());
+			pst.setDouble(5, filme.getPopularidade());
+			pst.setDate(6, new java.sql.Date(filme.getDataLancamento().getTime()));
+			pst.setInt(7, filme.getGenero().getId());
+			pst.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+	}
 }

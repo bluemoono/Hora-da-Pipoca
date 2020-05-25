@@ -21,7 +21,7 @@
 					aria-expanded="false">Filme<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="manter_filmes.do?acao=listar">Listar Filmes</a></li>
-						<li><a href="MostrarFilme.jsp">Mostrar Filme</a></li>
+						<li><a href="MostrarFilme.jsp">Procurar Filme</a></li>
 						<li><a href="manter_filmes.do?acao=generos">Novo Filme</a></li>
 					</ul>
 				</li>
