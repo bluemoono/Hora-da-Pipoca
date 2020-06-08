@@ -114,7 +114,7 @@
 		<hr>
 			<div id="actions" class="row">
 				<div class="col-md-12">
-					<button type="submit" id="btnFinalizar" name="acao" value="btn-finalizar-de-carrinho-jsp" class="btn btn-primary" disabled>Finalizar Compra</button>
+					<button type="submit" id="btnFinalizar" name="acao" value="btn-finalizar-de-carrinho-jsp" class="btn btn-primary">Finalizar Compra</button>
 					<button type="submit" id="btnVisualizar" name="acao" value="btn-visualizar-de-carrinho-jsp" class="btn btn-info" disabled>Visualizar</button>
 					<input type="button" class="btn btn-danger" id="btnExcluir" data-toggle="modal" data-target="#delete-modal" value="Excluir" disabled>
 					<a href="index.jsp" class="btn btn-default">Voltar</a>

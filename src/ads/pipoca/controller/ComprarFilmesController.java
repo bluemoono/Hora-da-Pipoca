@@ -2,6 +2,7 @@ package ads.pipoca.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.TreeSet;
 
 import javax.servlet.RequestDispatcher;
@@ -12,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import ads.pipoca.model.entity.Compra;
 import ads.pipoca.model.entity.Filme;
+import ads.pipoca.model.entity.Usuario;
+import ads.pipoca.model.service.CompraService;
 import ads.pipoca.model.service.FilmeService;
 
 @WebServlet("/comprar_filmes.do")
@@ -31,6 +35,7 @@ public class ComprarFilmesController extends HttpServlet {
 		HttpSession session = request.getSession();
 		TreeSet<Filme> carrinho = null;
 		ArrayList<Integer> lista = null;
+		CompraService cService = new CompraService();
 
 		switch (acao) {
 		case "btn-comprar-de-exibir-filmes-jsp":
@@ -66,6 +71,29 @@ public class ComprarFilmesController extends HttpServlet {
 					carrinho.remove(filme);
 				}
 			}
+			break;
+		case "btn-finalizar-de-carrinho-jsp":
+			@SuppressWarnings("deprecation") String path = request.getRealPath(request.getContextPath());
+			//System.out.println(path);
+			aux = session.getAttribute("filmes");
+			if (aux != null && aux instanceof TreeSet<?>) {
+				carrinho = (TreeSet<Filme>) aux;
+				ArrayList<Compra> compra = new ArrayList<>();
+				Usuario logado = (Usuario)session.getAttribute("logado");
+				
+				Compra co;
+				for(Filme filme:carrinho) {
+					co = new Compra();
+					co.setDataCompra(new Date());
+					co.setIdFilme(filme.getId());
+					co.setTituloFilme(filme.getTitulo());
+					co.setUsuario(logado.getUsername());
+					compra.add(co);
+				}
+				cService.gravarLogCompra(path, compra);
+			} 
+			
+			
 			break;
 		}
 

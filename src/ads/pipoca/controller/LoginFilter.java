@@ -29,8 +29,8 @@ public class LoginFilter implements Filter{
 		String path = req.getContextPath();
 		String uri = req.getRequestURI();
 		String acao = req.getParameter("acao");
-		System.out.println("Filter: Path: "+path);
-		System.out.println("Filter: URI: "+uri);
+		//System.out.println("Filter: Path: "+path);
+		//System.out.println("Filter: URI: "+uri);
 		
 		
 		if(acao == null) {
